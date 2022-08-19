@@ -1,0 +1,6 @@
+clean floor
+vacuum
+feed cat
+wash dishes
+dry dishes
+ cook dinner
