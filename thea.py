@@ -13,6 +13,8 @@ def recipe_search(ingredient):
 
 
   data = results.json()
+  
+  print(data)
 
   return data[hits]
 
