@@ -5,10 +5,11 @@ edamam_app_key = 'b4bd766ee7762ee33c6758532257181c'
 
 edamam_app_id = '753f0d79'
 
+dish_type = input('What type of dish are you cooking today?')
 
 def one_dietary_restriction():
   results = requests.get(
-    'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&excluded={}'.format(user_ingredient1, edamam_app_id, edamam_app_key, user_health_concern, user_aversion))
+    'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&excluded={}&dishType={}'.format(user_ingredient1, edamam_app_id, edamam_app_key, user_health_concern, user_aversion, dish_type))
 
   data = results.json()
 
@@ -28,8 +29,8 @@ def one_dietary_restriction():
 
 def two_dietary_restrictions():
     results = requests.get(
-      'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&health={}&excluded={}'.format(user_ingredient1, edamam_app_id,
-                                                                                 edamam_app_key, user_health_concern, user_health_concern2, user_aversion))
+      'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&health={}&excluded={}&dishType={}'.format(user_ingredient1, edamam_app_id,
+                                                                                 edamam_app_key, user_health_concern, user_health_concern2, user_aversion, dish_type))
 
     data = results.json()
 
@@ -37,7 +38,7 @@ def two_dietary_restrictions():
       'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id, edamam_app_key))
 
 
-    print('We found {} {}, {} recipes without {} that use {}.'.format((data['count']), user_health_concern, user_health_concern2, user_aversion, user_ingredient1))
+    print('We found {} {}, {} recipes without {} that use {}.'.format((data['count']), user_health_concern, user_health_concern2, user_aversion, user_ingredient1, dish_type))
 
     print('See below for the top 10 results:')
 
