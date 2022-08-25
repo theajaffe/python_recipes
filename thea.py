@@ -5,18 +5,16 @@ edamam_app_key = 'b4bd766ee7762ee33c6758532257181c'
 
 edamam_app_id = '753f0d79'
 
+
 def one_dietary_restriction():
   results = requests.get(
-    'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}'.format(user_ingredient1, edamam_app_id, edamam_app_key, user_health_concern))
+    'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&excluded={}'.format(user_ingredient1, edamam_app_id, edamam_app_key, user_health_concern, user_aversion))
 
   data = results.json()
-  data_keys = data.keys()
 
   print( 'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id, edamam_app_key))
 
-  print(data_keys)
-
-  print('There are {} {} recipes that use {}.'.format((data['count']), user_health_concern, user_ingredient1))
+  print('We found {} {} recipes without {} that use {}.'.format((data['count']), user_health_concern, user_aversion, user_ingredient1))
 
   print('See below for the top 10 results:')
 
@@ -25,22 +23,21 @@ def one_dietary_restriction():
   for each_recipe in recipe_hits:
     recipe = each_recipe['recipe']
     print(recipe['label'])
-    print(recipe['uri'])
+    print(recipe['shareAs'])
+
 
 def two_dietary_restrictions():
     results = requests.get(
-      'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&health={}'.format(user_ingredient1, edamam_app_id,
-                                                                                 edamam_app_key, user_health_concern, user_health_concern2))
+      'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&health={}&excluded={}'.format(user_ingredient1, edamam_app_id,
+                                                                                 edamam_app_key, user_health_concern, user_health_concern2, user_aversion))
 
     data = results.json()
-    data_keys = data.keys()
 
     print(
       'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id, edamam_app_key))
 
-    print(data_keys)
 
-    print('There are {} {}, {} recipes that use {}.'.format((data['count']), user_health_concern, user_health_concern2, user_ingredient1))
+    print('We found {} {}, {} recipes without {} that use {}.'.format((data['count']), user_health_concern, user_health_concern2, user_aversion, user_ingredient1))
 
     print('See below for the top 10 results:')
 
@@ -49,16 +46,18 @@ def two_dietary_restrictions():
     for each_recipe in recipe_hits:
       recipe = each_recipe['recipe']
       print(recipe['label'])
-      print(recipe['uri'])
+      print(recipe['shareAs'])
 
 
 user_ingredient1 = input("what is your first ingredient?")
+user_aversion = input("which ingredient are you avoiding?")
 user_health_concern = input('what is your dietary restriction?')
 
 further_restrictions = input('Do you have further dietary restrictions?')
 
 if further_restrictions == 'no':
   one_dietary_restriction()
+
 
 elif further_restrictions == 'yes':
   user_health_concern2 = input('what other restriction do you have?')
