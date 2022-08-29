@@ -15,7 +15,7 @@ def one_dietary_restriction():
 
 
   if data['count'] == 0:
-      print('Unfortunately your search returned no recipes.  Please check spelling and try again.')
+      print('Unfortunately your search returned no recipes.  Please check spelling and try again. Check that {} is a dish type listed in Edamame.'.format(dish_type))
   else:
 
         print('We found {} {} {} recipes without {} that use {}.'.format((data['count']), user_health_concern, dish_type, user_aversion, user_ingredient1))
