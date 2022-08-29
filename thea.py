@@ -13,18 +13,24 @@ def one_dietary_restriction():
 
   data = results.json()
 
-  print('We found {} {} recipes without {} that use {}.'.format((data['count']), user_health_concern, user_aversion, user_ingredient1))
 
-  print('See below for the top 10 results:')
+  if data['count'] == 0:
+      print('Unfortunately your search returned no recipes.  Please check spelling and try again.')
+  else:
 
-  recipe_hits = (data['hits'])
+        print('We found {} {} {} recipes without {} that use {}.'.format((data['count']), user_health_concern, dish_type, user_aversion, user_ingredient1))
 
-  for each_recipe in recipe_hits:
-    recipe = each_recipe['recipe']
-    print(recipe['label'])
-    print(recipe['shareAs'])
-  print('For more info, please see:')
-  print( 'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id, edamam_app_key))
+        print('See below for the top 10 results:')
+
+        recipe_hits = (data['hits'])
+
+
+        for each_recipe in recipe_hits:
+            recipe = each_recipe['recipe']
+            pprint(recipe['label'])
+            print(recipe['shareAs'])
+        print('For more info, click here:')
+        print( 'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id, edamam_app_key))
 
 
 def two_dietary_restrictions():
