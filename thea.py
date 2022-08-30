@@ -5,6 +5,10 @@ edamam_app_key = 'b4bd766ee7762ee33c6758532257181c'
 
 edamam_app_id = '753f0d79'
 
+print('Dish types are:  biscuits and cookies. Bread. Cereals. Condiments and sauces.')
+print('Desserts. Drinks. Main course.  Pancake.  Preps.  Preserve.')
+print('Salad. Sandwiches.  Side dish.  Soup.  Starter.  Sweets')
+
 dish_type = input('What type of dish are you cooking today?')
 
 def one_dietary_restriction():
