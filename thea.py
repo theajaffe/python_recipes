@@ -13,7 +13,7 @@ dish_type = input('What type of dish are you cooking today?')
 
 def one_dietary_restriction():
   results = requests.get(
-    'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&excluded={}&dishType={}'.format(user_ingredient1, edamam_app_id, edamam_app_key, user_health_concern, user_aversion, dish_type))
+    'https://api.edamam.com/search?q={}&q={}&app_id={}&app_key={}&health={}&excluded={}&dishType={}'.format(user_ingredient1, user_ingredient2,  edamam_app_id, edamam_app_key, user_health_concern, user_aversion, dish_type))
 
   data = results.json()
 
@@ -22,7 +22,7 @@ def one_dietary_restriction():
       print('Unfortunately your search returned no recipes.  Please check spelling and try again. Check that {} is a dish type listed in Edamame.'.format(dish_type))
   else:
 
-        print('We found {} {} {} recipes without {} that use {}.'.format((data['count']), user_health_concern, dish_type, user_aversion, user_ingredient1))
+        print('We found {} {} {} recipes without {} that use {} and {}.'.format((data['count']), user_health_concern, dish_type, user_aversion, user_ingredient1, user_ingredient2))
 
         print('See below for the top 10 results:')
 
@@ -34,12 +34,12 @@ def one_dietary_restriction():
             pprint(recipe['label'])
             print(recipe['shareAs'])
         print('For more info, click here:')
-        print( 'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id, edamam_app_key))
+        print( 'https://api.edamam.com/search?q={}&q={}&app_id={}&app_key={}'.format(user_ingredient1, user_ingredient2, edamam_app_id, edamam_app_key))
 
 
 def two_dietary_restrictions():
     results = requests.get(
-      'https://api.edamam.com/search?q={}&app_id={}&app_key={}&health={}&health={}&excluded={}&dishType={}'.format(user_ingredient1, edamam_app_id,
+      'https://api.edamam.com/search?q={}&q={}&app_id={}&app_key={}&health={}&health={}&excluded={}&dishType={}'.format(user_ingredient1, user_ingredient2, edamam_app_id,
                                                                                  edamam_app_key, user_health_concern, further_restrictions, user_aversion, dish_type))
 
     data = results.json()
@@ -50,9 +50,9 @@ def two_dietary_restrictions():
                 dish_type))
     else:
 
-        print('We found {} {}, {} recipes without {} that use {}.'.format((data['count']), user_health_concern,
+        print('We found {} {}, {} recipes without {} that use {} and {}.'.format((data['count']), user_health_concern,
                                                                       further_restrictions, user_aversion,
-                                                                      user_ingredient1, dish_type))
+                                                                      user_ingredient1, user_ingredient2))
 
         print('See below for the top 10 results:')
 
@@ -65,11 +65,12 @@ def two_dietary_restrictions():
 
     print('For more info, see:')
     print(
-        'https://api.edamam.com/search?q={}&app_id={}&app_key={}'.format(user_ingredient1, edamam_app_id,
+        'https://api.edamam.com/search?q={}&q={}&app_id={}&app_key={}'.format(user_ingredient1, user_ingredient2, edamam_app_id,
                                                                          edamam_app_key))
 
 
 user_ingredient1 = input("what is your first ingredient?")
+user_ingredient2 = input('What is your second ingredient?')
 user_aversion = input("which ingredient are you avoiding?")
 user_health_concern = input('what is your dietary restriction?')
 
