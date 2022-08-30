@@ -40,11 +40,17 @@ def two_dietary_restrictions():
 
     data = results.json()
 
-    print('We found {} {}, {} recipes without {} that use {}.'.format((data['count']), user_health_concern,
+    if data['count'] == 0:
+        print(
+            'Unfortunately your search returned no recipes.  Please check spelling and try again. Check that {} is a dish type listed in Edamame.'.format(
+                dish_type))
+    else:
+
+        print('We found {} {}, {} recipes without {} that use {}.'.format((data['count']), user_health_concern,
                                                                       further_restrictions, user_aversion,
                                                                       user_ingredient1, dish_type))
 
-    print('See below for the top 10 results:')
+        print('See below for the top 10 results:')
 
     recipe_hits = (data['hits'])
 
