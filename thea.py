@@ -1,13 +1,20 @@
 import requests
 from pprint import pprint
+from time import sleep
 
 edamam_app_key = 'b4bd766ee7762ee33c6758532257181c'
 
 edamam_app_id = '753f0d79'
 
-print('Dish types are:  biscuits and cookies. Bread. Cereals. Condiments and sauces.')
-print('Desserts. Drinks. Main course.  Pancake.  Preps.  Preserve.')
-print('Salad. Sandwiches.  Side dish.  Soup.  Starter.  Sweets')
+print('Which dish type best describes what you are cooking:  biscuits and cookies?')
+sleep(1)
+
+print( 'Bread? Cereals? Condiments and sauces?')
+sleep(1)
+print('Desserts? Drinks? Main course?  Pancake?  Preps?  Preserve?')
+sleep(1)
+print('Salad? Sandwiches?  Side dish?  Soup?  Starter?  Sweets?')
+sleep(1)
 
 dish_type = input('What type of dish are you cooking today?')
 
